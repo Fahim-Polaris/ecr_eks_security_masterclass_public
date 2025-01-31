@@ -1,10 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: security-context-demo
-  namespace: sensitive-ns
+  name: privileged-pod
 spec:
   containers:
-  - name: sec-ctx-demo
-    image: busybox:1.28
-    command: [ "sh", "-c", "sleep 1h" ]
+  - name: privileged-container
+    image: busybox  # or any other simple image that you can use to access the system
+    command: ["sleep", "3600"]  # Keep the pod running for an extended period
+    securityContext:
+      privileged: true  # This grants elevated privileges to the container
+      capabilities:
+        add: ["NET_ADMIN", "SYS_ADMIN"]  # These capabilities allow network and system administration actions
+  # You could also mount sensitive host paths here (if applicable)
